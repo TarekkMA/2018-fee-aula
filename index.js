@@ -2,8 +2,8 @@ const rp = require('request-promise');
 const cheerio = require('cheerio');
 const fs = require('fs');
 
+let numa = parseInt(process.argv[2])
 
-let numa = 1300000
 
 let arr = []
 
@@ -65,7 +65,7 @@ function doNum(num) {
             function getTableContent(trs) {
                 let o = {}
                 if (trs.length != 1) {
-                    for (var i = 2; i < trs.length; i += 2) {
+                    for (var i = 0; i < trs.length; i += 2) {
                         o[$(trs.get(i)).text().replace("\n", "").trim()] = $(trs.get(i + 1)).text().replace("\n", "").trim()
                     }
                 }
@@ -112,8 +112,10 @@ async function work(from, to) {
         work(300, 400),
         work(400, 500),
         work(500, 600),
+        work(600, 750),
     ]);
     console.log("DONE")
-    fs.writeFileSync("./res_13.json",JSON.stringify(arr))
+    fs.writeFileSync("./res"+numa+".json",JSON.stringify(arr))
     console.log("RESULR SAVED")
 })()
+
