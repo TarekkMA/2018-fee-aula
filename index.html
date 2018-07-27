@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+
+<html class="no-js" lang="ar" dir="rtl">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="ie=edge" http-equiv="x-ua-compatible">
+  <title>{{STEAMER}} Playlist</title>
+  <meta content="Online song request list for {{STREAMER}}" name="description">
+  <meta content="width=device-width, initial-scale=1" name="viewport">
+  <link href="favicon.ico" rel="shortcut icon">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+  <link href="css/normalize.css" rel="stylesheet">
+  <link href="css/main.css" rel="stylesheet">
+  <script src="https://www.google.com/jsapi" type="text/javascript"></script>
+</head>
+
+<body id="background">
+  <div id="box">
+    <h2>نتيجة الفرقة الأولي - هندسة الإلكترونيات بمنوف</h2>
+    <p class="small">Scrapped By <a target="_blank" href="http://fb.com/tarekkma1">TarekkMA</a> <br> Scrapper source code : <a target="_blank" href="https://pastebin.com/w1f0DSu8">Click Here</a></p>
+    <script type="text/javascript">
+      google.load('visualization', '1', {
+        packages: ['table']
+      });
+      var visualization;
+
+      function drawVisualization() {
+        var query = new google.visualization.Query(
+          'https://docs.google.com/spreadsheets/d/1BLu1366S3lqSzfNyVoQEFUuLXtPwKOKe1WULVxM7if4/edit#gid=733773020');
+        //query.setQuery('SELECT A, B, C, D label A "Duration", B "Song", C "Requested By", D "URL"');
+        query.setQuery('SELECT A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U');
+        query.send(handleQueryResponse);
+      }
+
+      function handleQueryResponse(response) {
+        if (response.isError()) {
+          alert('There was a problem with your query: ' + response.getMessage() + ' ' + response.getDetailedMessage());
+          return;
+        }
+        var data = response.getDataTable();
+        visualization = new google.visualization.Table(document.getElementById('table'));
+        visualization.draw(data, {
+          allowHtml: true,
+          legend: 'bottom'
+        });
+      }
+      google.setOnLoadCallback(drawVisualization);
+    </script>
+    <div id="table">
+    </div>
+    <p class="small">Made By TarekkMA</p>
+  </div>
+</body>
+
+</html>
